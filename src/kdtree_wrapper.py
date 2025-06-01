@@ -1,10 +1,21 @@
 from ctypes import CFUNCTYPE
 from ctypes import POINTER
+from ctypes import RTLD_GLOBAL
 from ctypes import CDLL
 from ctypes import Structure
 from ctypes import c_double
 from ctypes import c_int
 from ctypes import c_void_p
+import os
+import platform
+
+system = platform.system()
+if system == "Windows":
+    extension = ".dll"
+if system == "Linux":
+    extension = ".so"
+if extension == None:
+    raise RuntimeError(f"Unsupported operating system: {system}. This script only works on Windows and Linux")
 
 class Node(Structure):
     pass
@@ -26,8 +37,8 @@ class Tree(Structure):
         ("k", c_int)
     ]
 
-# Carregar a biblioteca C
-lib = CDLL("./lib/lib-kdtree.so")
+CLANG_SHARED_LIBS_PATH = os.getenv("CLANG_SHARED_LIBS_PATH")
+lib = CDLL(f"{CLANG_SHARED_LIBS_PATH}/lib-kdtree{extension}", mode=RTLD_GLOBAL)
 
 # Definir a assinatura da função
 lib.kdtree_build.argtypes = [ POINTER(Tree), _c_cmp_func, _c_dist_func, c_int ]

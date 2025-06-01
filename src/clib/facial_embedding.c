@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include "src/clib/headers/kdtree.h"
+#include "./headers/kdtree.h"
 
 #define MAX_UID_LENGTH 100
 #define MAX_EMBEDDING_LENGTH 128

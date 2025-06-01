@@ -3,8 +3,8 @@
 
 typedef struct _node {
     void * key;
-    node_t * left;
-    node_t * right;
+    struct _node * left;
+    struct _node * right;
 } node_t;
 
 typedef struct _tree {

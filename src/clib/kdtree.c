@@ -3,7 +3,7 @@
 #include <float.h>
 #include <string.h>
 #include <assert.h>
-#include "src/clib/headers/kdtree.h"
+#include "./headers/kdtree.h"
 
 /*Definições desenvolvedor usuario*/
 typedef struct _test_reg {
@@ -116,9 +116,7 @@ void _kdtree_search_nearest(tree_t *arv, node_t ** atual, void * key, int profun
     }
     int pos = profund % arv->k;
     int comp = arv->cmp(key, (*atual)->key, pos);
-
-    printf("%s dist %4.3f menor_dist %4.3f comp %d\n", ((test_reg_t *)((node_t *)*atual)->key)->nome,dist_atual,*menor_dist,comp);
-
+    
     /* define lado principal para buscar */
     if (comp < 0){
         lado_principal =  &((*atual)->left);
@@ -133,7 +131,6 @@ void _kdtree_search_nearest(tree_t *arv, node_t ** atual, void * key, int profun
     /* Verifica se deve buscar também no outro lado*/
 
     if (comp*comp < *menor_dist) {
-        printf("tentando do outro lado %f\n",comp*comp);
         _kdtree_search_nearest(arv, lado_oposto, key, profund + 1, menor_dist, menor);
     }
 }
