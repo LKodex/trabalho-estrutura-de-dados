@@ -2,6 +2,8 @@
 
 **Aluno:** Lucas Gonçalves Cordeiro &lt;lucas.g.cordeiro@ufms.br&gt; (2021.1906.031-0)
 
+É necessário Python versão &lt;=3.9 para executar o projeto.
+
 ## Mapeamento de Features/Requisitos Solicitados
 Feature | Status
 :------ | :----:
